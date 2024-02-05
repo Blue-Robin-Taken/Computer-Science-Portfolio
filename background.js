@@ -3,17 +3,17 @@ window.onload = runBackground;
 x = 0;
 y = 0;
 
-SQUARE_SIZE = 80;
 SQUARE_AMOUNT = 10;
 
 square_list = []
 
 for (let i=0; i<SQUARE_AMOUNT;i++){
-    square_list.push((i*SQUARE_SIZE, 0))
+    square_list.push({"x":((ctx.canvas.width)/SQUARE_AMOUNT) * i, "y":0})
 }
 
-
 function changeSquarePos(square,ctx){
+    ctx.fillStyle = "#FFFFFF";
+    alert(ctx);
     ctx.fillRect(square.x, square.y, 80, 80);
 }
 
@@ -27,8 +27,7 @@ function update(ctx){
     ctx.fillRect(0, 0, window.innerWidth, canvas.height);
 
 
-
-    squares.forEach((element) => 
+    square_list.forEach((element) => 
         changeSquarePos(element, ctx)
     );
 
