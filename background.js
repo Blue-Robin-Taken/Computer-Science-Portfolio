@@ -3,33 +3,35 @@ window.onload = runBackground;
 x = 0;
 y = 0;
 
-SQUARE_AMOUNT = 10;
+SQUARE_AMOUNT = 100;
+SPEED = 10
+square_size=80
 
 square_list = []
 
-alert(square_list);
-
-function changeSquarePos(square,ctx){
+function drawSquares(square,ctx){
     ctx.fillStyle = "#FFFFFF";
-    ctx.fillRect(square.x, square.y, 80, 80);
+    ctx.fillRect(square.x, square.y, square_size, square_size);
 }
 
 function update(ctx){
     ctx.canvas.width  = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
 
-    for (let i=0; i<SQUARE_AMOUNT;i++){
-        square_list.push({"x":((ctx.canvas.width)/SQUARE_AMOUNT) * i, "y":0})
-    }
-
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear screen
 
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, window.innerWidth, canvas.height);
 
+    square_size = (ctx.canvas.width/SQUARE_AMOUNT)
+
+    square_list = [] // reset list
+    for (let i=0; i<SQUARE_AMOUNT;i++){
+        square_list.push({"x":((ctx.canvas.width)/SQUARE_AMOUNT) * i, "y":0})
+    }
 
     square_list.forEach((element) => 
-        changeSquarePos(element, ctx)
+        drawSquares(element, ctx)
     );
 
 }
@@ -41,6 +43,6 @@ function runBackground(){
 
     setInterval(function(){
         update(ctx)
-    }, 10);
+    }, SPEED); // update screen
 
 }
