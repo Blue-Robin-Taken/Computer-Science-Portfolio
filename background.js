@@ -7,19 +7,20 @@ SQUARE_AMOUNT = 10;
 
 square_list = []
 
-for (let i=0; i<SQUARE_AMOUNT;i++){
-    square_list.push({"x":((ctx.canvas.width)/SQUARE_AMOUNT) * i, "y":0})
-}
+alert(square_list);
 
 function changeSquarePos(square,ctx){
     ctx.fillStyle = "#FFFFFF";
-    alert(ctx);
     ctx.fillRect(square.x, square.y, 80, 80);
 }
 
 function update(ctx){
     ctx.canvas.width  = window.innerWidth;
     ctx.canvas.height = window.innerHeight;
+
+    for (let i=0; i<SQUARE_AMOUNT;i++){
+        square_list.push({"x":((ctx.canvas.width)/SQUARE_AMOUNT) * i, "y":0})
+    }
 
     ctx.clearRect(0, 0, canvas.width, canvas.height);  // Clear screen
 
